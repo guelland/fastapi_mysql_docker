@@ -1,44 +1,49 @@
 # FastAPI MySQL Docker
 
-This project provides a sample application that integrates FastAPI with MySQL in a Docker container.
+Dieses Projekt bietet eine Beispielanwendung, die FastAPI mit MySQL in einem Docker-Container integriert.
 
-## Table of Contents
+## Inhaltsverzeichnis
 
 - Installation
-- Usage
-- Project Structure
-- Configuration
-- Contributing
-- License
+- Verwendung
+- Projektstruktur
+- Konfiguration
+- Beitragen
+- Lizenz
 
 ## Installation
 
-1. **Clone the repository:**
-```bash
-git clone https://github.com/integration-developer-  de/fastapi_mysql_docker.git
-cd fastapi_mysql_docker
-```
-2. **Start the Docker container**
-```bash
-docker-compose up --build
-```
-3. **Usage**
-After starting the Docker container, the application will be accessible at http://localhost:8000
+1. **Repository klonen:**
+    ```bash
+    git clone https://github.com/integration-developer-de/fastapi_mysql_docker.git
+    cd fastapi_mysql_docker
+    ```
+2. **Docker-Container starten:**
+    ```bash
+    docker-compose up --build
+    ```
 
-API Testing
-You can test the API using Postman or any other API client.
+## Verwendung
 
-Open your browser and go to:
-API Root: http://localhost:8000
-Swagger Documentation: http://localhost:8000/docs/v1
-Redoc Documentation: http://localhost:8000/redoc/v1
+Nach dem Starten des Docker-Containers ist die Anwendung unter http://localhost:8000 erreichbar.
 
-Using Postman:
-Import the API collection: You can manually create requests in Postman or import an existing collection if available.
-Create a new request: Set the method (GET, POST, etc.) and the URL (e.g., http://localhost:8000/...).
-Send the request: View the response and test different endpoints as needed
+### API-Tests
 
-4. **Project Structure**
+Du kannst die API mit Postman oder einem anderen API-Client testen.
+
+- **API Root:** http://localhost:8000
+- **Swagger-Dokumentation:** http://localhost:8000/docs/v1
+- **Redoc-Dokumentation:** http://localhost:8000/redoc/v1
+
+#### Verwendung von Postman:
+
+1. **API-Sammlung importieren:** Du kannst Anfragen manuell in Postman erstellen oder eine vorhandene Sammlung importieren, falls verfügbar.
+2. **Neue Anfrage erstellen:** Methode (GET, POST, etc.) und URL (z.B. http://localhost:8000/items) festlegen.
+3. **Anfrage senden:** Die Antwort anzeigen und verschiedene Endpunkte testen.
+
+## Projektstruktur
+
+```plaintext
 fastapi_mysql_docker/
 ├── app/
 │   ├── main.py
@@ -49,6 +54,7 @@ fastapi_mysql_docker/
 ├── docker-compose.yml
 ├── Dockerfile
 └── README.md
+```
 
 ## Author
 
