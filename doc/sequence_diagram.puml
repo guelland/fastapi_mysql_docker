@@ -1,0 +1,65 @@
+@startuml
+actor Client
+participant "FastAPI\n(main.py)" as API
+participant "CRUD Layer\n(crud.py)" as CRUD
+participant "Database\n(Session)" as DB
+
+== Create Product ==
+Client -> API : POST /products/\n(ProductCreate)
+API -> CRUD : create_product(product, db)
+CRUD -> DB : INSERT Product
+DB --> CRUD : Product instance
+CRUD --> API : Product
+API --> Client : 201 Created\nProduct
+
+== List Products ==
+Client -> API : GET /products/
+API -> CRUD : get_products(skip, limit, db)
+CRUD -> DB : SELECT Products
+DB --> CRUD : List[Product]
+CRUD --> API : List[Product]
+API --> Client : 200 OK\nList[Product]
+
+== Get Product by ID ==
+Client -> API : GET /products/{id}
+API -> CRUD : get_product(product_id, db)
+CRUD -> DB : SELECT Product by ID
+DB --> CRUD : Product or None
+alt Product found
+    CRUD --> API : Product
+    API --> Client : 200 OK\nProduct
+else Product not found
+    CRUD --> API : None
+    API -> Client : 404 Not Found
+end
+
+== Update Product ==
+Client -> API : PUT /products/{id}\n(ProductCreate)
+API -> CRUD : update_product(product_id, product, db)
+CRUD -> DB : SELECT Product by ID
+DB --> CRUD : Product or None
+alt Product found
+    CRUD -> DB : UPDATE Product
+    DB --> CRUD : Updated Product
+    CRUD --> API : Updated Product
+    API --> Client : 200 OK\nProduct
+else Product not found
+    CRUD --> API : None
+    API -> Client : 404 Not Found
+end
+
+== Delete Product ==
+Client -> API : DELETE /products/{id}
+API -> CRUD : delete_product(product_id, db)
+CRUD -> DB : SELECT Product by ID
+DB --> CRUD : Product or None
+alt Product found
+    CRUD -> DB : DELETE Product
+    DB --> CRUD : Deleted Product
+    CRUD --> API : Deleted Product
+    API --> Client : 200 OK\nDeleted
+else Product not found
+    CRUD --> API : None
+    API -> Client : 404 Not Found
+end
+@enduml
